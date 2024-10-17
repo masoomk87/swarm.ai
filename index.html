@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoXAI - AI-driven Innovation for Automotive Enterprises</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #ff006e;
+            --background-color: #ffffff;
+            --text-color: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        .dark-mode {
+            --primary-color: #8ecae6;
+            --secondary-color: #ff7b00;
+            --background-color: #1a1a1a;
+            --text-color: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body, html {
+            height: 100%;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            transition: var(--transition);
+        }
+        
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        .header-scrolled {
+            background-color: var(--background-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .parallax-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+        }
+        
+        .content {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            max-width: 800px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+        
+        .content.reveal {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: var(--transition);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+        
+        .services {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .service-item {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+        
+        .service-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            width: 100%;
+        }
+        
+        input, textarea {
+            margin-bottom: 1rem;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+        
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">AutoXAI</div>
+            <ul>
+                <li><a href="#welcome">Welcome</a></li>
+                <li><a href="#vision">Our Vision</a></li>
+                <li><a href="#why-choose-us">Why Choose Us</a></li>
+                <li><a href="#services">Our Services</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="welcome">
+        <div class="parallax-bg" style="background-image: url('/api/placeholder/1920/1080');"></div>
+        <div class="content">
+            <h1>Welcome to AutoXAI</h1>
+            <p>Unlock and enable AI-driven innovation across all facets of your enterprise</p>
+            <a href="#vision" class="btn">Discover how</a>
+        </div>
+    </section>
+
+    <section id="vision">
+        <div class="parallax-bg" style="background-image: url('/api/placeholder/1920/1080');"></div>
+        <div class="content">
+            <h2>Our Vision</h2>
+            <p>Empowering automotive enterprises to confidently navigate the AI landscape, transforming challenges into opportunities for innovation</p>
+            <p>From foundational understanding to strategic implementation, we drive AI excellence</p>
+        </div>
+    </section>
+
+    <section id="why-choose-us">
+        <div class="parallax-bg" style="background-image: url('/api/placeholder/1920/1080');"></div>
+        <div class="content">
+            <h2>Why Choose Us?</h2>
+            <p>With over 13 years of unparalleled automotive expertise, we leverage proven AI leadership and hands-on experience to drive innovation.</p>
+            <p>Our first-principles approach builds foundational AI understanding, enabling organizations to confidently adopt tailored AI solutions that transform their R&D processes.</p>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="parallax-bg" style="background-image: url('/api/placeholder/1920/1080');"></div>
+        <div class="content">
+            <h2>Our Services</h2>
+            <div class="services">
+                <div class="service-item">
+                    <h3>Build foundational knowledge</h3>
+                    <p>Build a strong AI foundation across your organization. Our training simplifies complex concepts, equipping your team with essential AI knowledge.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Strategic consulting</h3>
+                    <p>Collaborate with us to define a tailored AI strategy aligned with your goals. We help you create a clear roadmap for effective AI adoption.</p>
+                </div>
+                <div class="service-item">
+                    <h3>Turn Strategy into Action</h3>
+                    <p>Transform plans into reality. We assist in developing and deploying AI solutions that address your specific R&D challenges.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="parallax-bg" style="background-image: url('/api/placeholder/1920/1080');"></div>
+        <div class="content">
+            <h2>Contact Us</h2>
+            <p>Tel: +46 767 64 9795</p>
+            <p>Email: masoom.kumar87@gmail.com</p>
+            <p>Address: 4251 Göteborg, Sweden</p>
+            
+            <h3>Subscribe to Our Newsletter</h3>
+            <form action="#" method="post">
+                <input type="email" name="email" placeholder="Your email address" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <button class="dark-mode-toggle">🌓</button>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Reveal content on scroll
+        const revealContent = () => {
+            const contents = document.querySelectorAll('.content');
+            contents.forEach(content => {
+                const contentTop = content.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                if (contentTop < windowHeight * 0.75) {
+                    content.classList.add('reveal');
+                }
+            });
+        };
+
+        // Sticky header
+        const header = document.querySelector('header');
+        const stickyHeader = () => {
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        };
+
+        // Parallax effect
+        const parallax = () => {
+            const parallaxBgs = document.querySelectorAll('.parallax-bg');
+            parallaxBgs.forEach(bg => {
+                const scrollPosition = window.pageYOffset;
+                bg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+            });
+        };
+
+        // Dark mode toggle
+        const darkModeToggle = document.querySelector('.dark-mode-toggle');
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+        });
+
+        // Event listeners
+        window.addEventListener('scroll', () => {
+            revealContent();
+            stickyHeader();
+            parallax();
+        });
+
+        window.addEventListener('load', revealContent);
+    </script>
+</body>
+</html>
