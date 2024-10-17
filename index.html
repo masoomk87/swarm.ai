@@ -4,21 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AutoXAI - AI-driven Innovation for Automotive Enterprises</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Merriweather:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #3a86ff;
-            --secondary-color: #ff006e;
-            --background-color: #ffffff;
+            --primary-color: #1a2b3c;
+            --secondary-color: #4a90e2;
             --text-color: #333333;
+            --background-color: #f8f9fa;
             --transition: all 0.3s ease;
-        }
-
-        .dark-mode {
-            --primary-color: #8ecae6;
-            --secondary-color: #ff7b00;
-            --background-color: #1a1a1a;
-            --text-color: #f0f0f0;
         }
 
         * {
@@ -29,22 +22,17 @@
         
         body, html {
             height: 100%;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Merriweather', serif;
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--background-color);
-            transition: var(--transition);
         }
         
         header {
             position: fixed;
             width: 100%;
             z-index: 1000;
-            transition: var(--transition);
-        }
-        
-        .header-scrolled {
-            background-color: var(--background-color);
+            background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
@@ -53,9 +41,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 1rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
         
         .logo {
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.5rem;
             font-weight: bold;
             color: var(--primary-color);
@@ -78,7 +69,7 @@
         }
         
         nav ul li a:hover {
-            color: var(--primary-color);
+            color: var(--secondary-color);
         }
         
         section {
@@ -87,73 +78,86 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
+            padding: 80px 20px;
         }
         
-        .parallax-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .container {
+            max-width: 1200px;
             width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            z-index: -1;
+            margin: 0 auto;
         }
         
-        .parallax-bg::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        
-        .content {
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 2rem;
-            border-radius: 10px;
-            max-width: 800px;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: var(--transition);
-            z-index: 1;
-        }
-        
-        .content.reveal {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        h1, h2, h3 {
-            margin-bottom: 1rem;
+        h1, h2 {
+            font-family: 'Montserrat', sans-serif;
             color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+        }
+        
+        .underline {
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary-color);
+            margin: 0 auto 40px;
         }
         
         p {
-            margin-bottom: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: 300;
         }
         
         .btn {
             display: inline-block;
-            background-color: var(--primary-color);
+            background-color: var(--secondary-color);
             color: #fff;
             padding: 0.8rem 1.5rem;
             border-radius: 5px;
             text-decoration: none;
             transition: var(--transition);
-            border: 2px solid var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
         
         .btn:hover {
-            background-color: transparent;
-            color: var(--primary-color);
+            background-color: var(--primary-color);
+        }
+        
+        .content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        
+        .text-column {
+            flex: 1;
+            padding-right: 40px;
+        }
+        
+        .image-column {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .icon {
+            width: 300px;
+            height: 300px;
+            background-color: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            color: var(--secondary-color);
         }
         
         .services {
@@ -164,7 +168,7 @@
         }
         
         .service-item {
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: #ffffff;
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -181,6 +185,7 @@
             flex-direction: column;
             max-width: 400px;
             width: 100%;
+            margin: 0 auto;
         }
         
         input, textarea {
@@ -193,35 +198,23 @@
         
         input:focus, textarea:focus {
             outline: none;
-            border-color: var(--primary-color);
+            border-color: var(--secondary-color);
         }
         
-        .dark-mode-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--primary-color);
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        
-        .dark-mode-toggle:hover {
-            transform: scale(1.1);
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        .fade-in {
-            animation: fadeIn 1s ease-out;
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            .text-column, .image-column {
+                width: 100%;
+                padding-right: 0;
+            }
+            .image-column {
+                margin-top: 40px;
+            }
+            nav ul {
+                display: none;
+            }
         }
     </style>
 </head>
@@ -240,36 +233,57 @@
     </header>
 
     <section id="welcome">
-        <div class="parallax-bg" style="background-image: url('images/welcome-background.jpg');"></div>
-        <div class="content">
+        <div class="container">
             <h1>Welcome to AutoXAI</h1>
-            <p>Unlock and enable AI-driven innovation across all facets of your enterprise</p>
-            <a href="#vision" class="btn">Discover how</a>
+            <div class="underline"></div>
+            <div class="content">
+                <div class="text-column">
+                    <p>Unlock and enable AI-driven innovation across all facets of your enterprise</p>
+                    <a href="#vision" class="btn">Discover how</a>
+                </div>
+                <div class="image-column">
+                    <div class="icon">🚗</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="vision">
-        <div class="parallax-bg" style="background-image: url('images/vision-background.jpg');"></div>
-        <div class="content">
+        <div class="container">
             <h2>Our Vision</h2>
-            <p>Empowering automotive enterprises to confidently navigate the AI landscape, transforming challenges into opportunities for innovation</p>
-            <p>From foundational understanding to strategic implementation, we drive AI excellence</p>
+            <div class="underline"></div>
+            <div class="content">
+                <div class="text-column">
+                    <p>Empowering automotive enterprises to confidently navigate the AI landscape, transforming challenges into opportunities for innovation</p>
+                    <p>From foundational understanding to strategic implementation, we drive AI excellence</p>
+                </div>
+                <div class="image-column">
+                    <div class="icon">🔮</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="why-choose-us">
-        <div class="parallax-bg" style="background-image: url('images/why-choose-us-background.jpg');"></div>
-        <div class="content">
+        <div class="container">
             <h2>Why Choose Us?</h2>
-            <p>With over 13 years of unparalleled automotive expertise, we leverage proven AI leadership and hands-on experience to drive innovation.</p>
-            <p>Our first-principles approach builds foundational AI understanding, enabling organizations to confidently adopt tailored AI solutions that transform their R&D processes.</p>
+            <div class="underline"></div>
+            <div class="content">
+                <div class="text-column">
+                    <p>With over 13 years of unparalleled automotive expertise, we leverage proven AI leadership and hands-on experience to drive innovation.</p>
+                    <p>Our first-principles approach builds foundational AI understanding, enabling organizations to confidently adopt tailored AI solutions that transform their R&D processes.</p>
+                </div>
+                <div class="image-column">
+                    <div class="icon">🏆</div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="services">
-        <div class="parallax-bg" style="background-image: url('images/services-background.jpg');"></div>
-        <div class="content">
+        <div class="container">
             <h2>Our Services</h2>
+            <div class="underline"></div>
             <div class="services">
                 <div class="service-item">
                     <h3>Build foundational knowledge</h3>
@@ -288,22 +302,25 @@
     </section>
 
     <section id="contact">
-        <div class="parallax-bg" style="background-image: url('images/contact-background.jpg');"></div>
-        <div class="content">
+        <div class="container">
             <h2>Contact Us</h2>
-            <p>Tel: +46 767 64 9795</p>
-            <p>Email: masoom.kumar87@gmail.com</p>
-            <p>Address: 4251 Göteborg, Sweden</p>
-            
-            <h3>Subscribe to Our Newsletter</h3>
-            <form action="#" method="post">
-                <input type="email" name="email" placeholder="Your email address" required>
-                <button type="submit" class="btn">Subscribe</button>
-            </form>
+            <div class="underline"></div>
+            <div class="content">
+                <div class="text-column">
+                    <p>Tel: +46 767 64 9795</p>
+                    <p>Email: masoom.kumar87@gmail.com</p>
+                    <p>Address: 4251 Göteborg, Sweden</p>
+                </div>
+                <div class="text-column">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <form action="#" method="post">
+                        <input type="email" name="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn">Subscribe</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
-
-    <button class="dark-mode-toggle">🌓</button>
 
     <script>
         // Smooth scrolling
@@ -318,49 +335,29 @@
 
         // Reveal content on scroll
         const revealContent = () => {
-            const contents = document.querySelectorAll('.content');
+            const contents = document.querySelectorAll('.content, .services');
             contents.forEach(content => {
                 const contentTop = content.getBoundingClientRect().top;
                 const windowHeight = window.innerHeight;
                 if (contentTop < windowHeight * 0.75) {
-                    content.classList.add('reveal');
+                    content.style.opacity = '1';
+                    content.style.transform = 'translateY(0)';
                 }
             });
         };
 
-        // Sticky header
-        const header = document.querySelector('header');
-        const stickyHeader = () => {
-            if (window.scrollY > 50) {
-                header.classList.add('header-scrolled');
-            } else {
-                header.classList.remove('header-scrolled');
-            }
-        };
-
-        // Parallax effect
-        const parallax = () => {
-            const parallaxBgs = document.querySelectorAll('.parallax-bg');
-            parallaxBgs.forEach(bg => {
-                const scrollPosition = window.pageYOffset;
-                bg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+        // Initialize content reveal
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.content, .services').forEach(content => {
+                content.style.opacity = '0';
+                content.style.transform = 'translateY(20px)';
+                content.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
             });
-        };
-
-        // Dark mode toggle
-        const darkModeToggle = document.querySelector('.dark-mode-toggle');
-        darkModeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-        });
-
-        // Event listeners
-        window.addEventListener('scroll', () => {
             revealContent();
-            stickyHeader();
-            parallax();
         });
 
-        window.addEventListener('load', revealContent);
+        // Event listener for scroll
+        window.addEventListener('scroll', revealContent);
     </script>
 </body>
 </html>
