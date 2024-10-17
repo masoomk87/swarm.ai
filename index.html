@@ -34,7 +34,7 @@
             position: fixed;
             width: 100%;
             z-index: 1000;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(26, 43, 60, 0.9);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
         }
@@ -48,16 +48,11 @@
             margin: 0 auto;
         }
 
-        nav.scrolled {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        
         .logo {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.5rem;
             font-weight: bold;
-            color: var(--primary-color);
+            color: #fff;
         }
 
         nav ul {
@@ -71,7 +66,7 @@
         
         nav ul li a {
             text-decoration: none;
-            color: var(--text-color);
+            color: #fff;
             font-weight: 600;
             transition: var(--transition);
         }
@@ -81,12 +76,12 @@
         }
         
         section {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
+            padding: 4rem 2rem;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -104,7 +99,6 @@
             z-index: -1;
         }
 
-        /* Parallax Background for each section */
         #welcome .parallax-bg { background-image: url('images/welcome-section.jpg'); }
         #vision .parallax-bg { background-image: url('images/vision-section.jpg'); }
         #why-choose-us .parallax-bg { background-image: url('images/why-choose-us-section.jpg'); }
@@ -117,15 +111,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5); /* Overlay for better text visibility */
+            background-color: rgba(0, 0, 0, 0.6);
         }
         
         .content {
             background-color: rgba(255, 255, 255, 0.9);
-            padding: 2rem;
+            padding: 3rem;
             border-radius: 10px;
             max-width: 800px;
             z-index: 1;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
         
         h1, h2, h3 {
@@ -134,31 +129,34 @@
             margin-bottom: 1rem;
         }
 
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 2rem; }
-        h3 { font-size: 1.5rem; }
+        h1 { font-size: 3rem; }
+        h2 { font-size: 2.5rem; }
+        h3 { font-size: 2rem; }
         
         p {
             margin-bottom: 1.5rem;
+            font-size: 1.1rem;
         }
         
         .btn {
             display: inline-block;
             background-color: var(--cta-color);
             color: #fff;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
+            padding: 1rem 2rem;
+            border-radius: 50px;
             text-decoration: none;
             transition: var(--transition);
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
-            margin-top: 1rem;
-            transform: translateY(0); /* Avoid shifting on hover */
+            margin-top: 1.5rem;
+            transform: scale(1);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn:hover {
             background-color: var(--secondary-color);
-            transform: translateY(-3px); /* Subtle hover effect */
+            transform: scale(1.05);
         }
 
         .services {
@@ -169,20 +167,24 @@
         }
         
         .service-item {
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
             border-radius: 10px;
             transition: var(--transition);
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         .service-item h3 {
             position: relative;
             z-index: 1;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .service-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         
         form {
@@ -195,20 +197,22 @@
         
         input, textarea {
             margin-bottom: 1rem;
-            padding: 0.5rem;
+            padding: 0.8rem;
             border: 1px solid #ddd;
             border-radius: 5px;
             transition: var(--transition);
+            font-size: 1rem;
         }
         
         input:focus, textarea:focus {
             outline: none;
             border-color: var(--secondary-color);
+            box-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
         }
 
         .next-section {
             position: absolute;
-            bottom: 2rem;
+            bottom: 3rem;
             left: 50%;
             transform: translateX(-50%);
         }
@@ -219,12 +223,12 @@
             }
 
             .content {
-                padding: 1.5rem;
+                padding: 2rem;
             }
 
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.75rem; }
-            h3 { font-size: 1.25rem; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.75rem; }
         }
     </style>
 </head>
@@ -263,9 +267,13 @@
     <section id="why-choose-us">
         <div class="parallax-bg"></div>
         <div class="content">
-            <h2>Why Choose Us?</h2>
-            <p>With over 13 years of unparalleled automotive expertise, we leverage proven AI leadership and hands-on experience to drive innovation.</p>
-            <p>Our first-principles approach builds foundational AI understanding, enabling organizations to confidently adopt tailored AI solutions that transform their R&D processes.</p>
+            <h2>Why Choose Us</h2>
+            <p>With our deep expertise in both automotive systems and cutting-edge AI technologies, we offer unparalleled solutions tailored to your specific needs.</p>
+            <ul>
+                <li>Industry-specific AI solutions</li>
+                <li>Proven track record of success</li>
+                <li>Dedicated support and consultation</li>
+            </ul>
             <a href="#services" class="btn next-section">Explore Our Services</a>
         </div>
     </section>
@@ -276,16 +284,16 @@
             <h2>Our Services</h2>
             <div class="services">
                 <div class="service-item">
-                    <h3>Build foundational knowledge</h3>
-                    <p>Build a strong AI foundation across your organization. Our training simplifies complex concepts, equipping your team with essential AI knowledge.</p>
+                    <h3>AI Strategy Consulting</h3>
+                    <p>Develop a tailored AI roadmap for your automotive enterprise</p>
                 </div>
                 <div class="service-item">
-                    <h3>Strategic consulting</h3>
-                    <p>Collaborate with us to define a tailored AI strategy aligned with your goals. We help you create a clear roadmap for effective AI adoption.</p>
+                    <h3>Custom AI Solutions</h3>
+                    <p>Build and implement AI models specific to your business needs</p>
                 </div>
                 <div class="service-item">
-                    <h3>Turn Strategy into Action</h3>
-                    <p>Transform plans into reality. We assist in developing and deploying AI solutions that address your specific R&D challenges.</p>
+                    <h3>AI Integration</h3>
+                    <p>Seamlessly integrate AI into your existing systems and processes</p>
                 </div>
             </div>
             <a href="#contact" class="btn next-section">Contact Us</a>
@@ -293,35 +301,18 @@
     </section>
 
     <section id="contact">
-        <div class="parallax-bg"></div>
         <div class="content">
             <h2>Contact Us</h2>
-            <p>Tel: +46 767 64 9795</p>
-            <p>Email: masoom.kumar87@gmail.com</p>
-            <p>Address: 4251 Göteborg, Sweden</p>
-            
-            <h3>Subscribe to Our Newsletter</h3>
-            <form action="#" method="post">
-                <input type="email" name="email" placeholder="Your email address" required>
-                <button type="submit" class="btn">Subscribe</button>
+            <form>
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Message" rows="5" required></textarea>
+                <button type="submit" class="btn">Send Message</button>
             </form>
-            <a href="#welcome" class="btn next-section">Back to Top</a>
         </div>
     </section>
 
-    <!-- Smooth Scroll & Parallax Effect -->
     <script>
-        // Smooth Scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Parallax Scroll
         const parallax = () => {
             const parallaxBgs = document.querySelectorAll('.parallax-bg');
             parallaxBgs.forEach(bg => {
@@ -332,13 +323,12 @@
 
         window.addEventListener('scroll', parallax);
 
-        // Navbar Background Change on Scroll
         const navbar = document.getElementById("navbar");
         window.addEventListener("scroll", function () {
             if (window.scrollY > 50) {
-                navbar.classList.add("scrolled");
+                navbar.style.backgroundColor = "rgba(26, 43, 60, 0.95)";
             } else {
-                navbar.classList.remove("scrolled");
+                navbar.style.backgroundColor = "rgba(26, 43, 60, 0.9)";
             }
         });
     </script>
