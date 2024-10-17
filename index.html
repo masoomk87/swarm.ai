@@ -11,6 +11,7 @@
             --secondary-color: #4a90e2;
             --text-color: #333333;
             --background-color: #f8f9fa;
+            --cta-color: #f04e23;
             --transition: all 0.3s ease;
         }
 
@@ -35,6 +36,7 @@
             z-index: 1000;
             background-color: rgba(255, 255, 255, 0.9);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
         }
         
         nav {
@@ -45,6 +47,11 @@
             max-width: 1200px;
             margin: 0 auto;
         }
+
+        nav.scrolled {
+            background-color: var(--primary-color);
+            color: white;
+        }
         
         .logo {
             font-family: 'Montserrat', sans-serif;
@@ -52,7 +59,7 @@
             font-weight: bold;
             color: var(--primary-color);
         }
-        
+
         nav ul {
             display: flex;
             list-style: none;
@@ -96,6 +103,13 @@
             background-attachment: fixed;
             z-index: -1;
         }
+
+        /* Parallax Background Placeholder */
+        #welcome .parallax-bg { background-image: url('https://via.placeholder.com/1920x1080?text=Welcome+Section+Image'); }
+        #vision .parallax-bg { background-image: url('https://via.placeholder.com/1920x1080?text=Vision+Section+Image'); }
+        #why-choose-us .parallax-bg { background-image: url('https://via.placeholder.com/1920x1080?text=Why+Choose+Us+Section+Image'); }
+        #services .parallax-bg { background-image: url('https://via.placeholder.com/1920x1080?text=Services+Section+Image'); }
+        #contact .parallax-bg { background-image: url('https://via.placeholder.com/1920x1080?text=Contact+Section+Image'); }
         
         .parallax-bg::before {
             content: "";
@@ -131,7 +145,7 @@
         
         .btn {
             display: inline-block;
-            background-color: var(--secondary-color);
+            background-color: var(--cta-color);
             color: #fff;
             padding: 0.8rem 1.5rem;
             border-radius: 5px;
@@ -140,12 +154,14 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 600;
             margin-top: 1rem;
+            transform: scale(1);
         }
-        
+
         .btn:hover {
-            background-color: var(--primary-color);
+            background-color: var(--secondary-color);
+            transform: scale(1.05);
         }
-        
+
         .services {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -158,8 +174,14 @@
             padding: 1.5rem;
             border-radius: 10px;
             transition: var(--transition);
+            position: relative;
         }
-        
+
+        .service-item h3 {
+            position: relative;
+            z-index: 1;
+        }
+
         .service-item:hover {
             transform: translateY(-5px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -185,7 +207,7 @@
             outline: none;
             border-color: var(--secondary-color);
         }
-        
+
         .next-section {
             position: absolute;
             bottom: 2rem;
@@ -197,9 +219,11 @@
             nav ul {
                 display: none;
             }
+
             .content {
                 padding: 1.5rem;
             }
+
             h1 { font-size: 2rem; }
             h2 { font-size: 1.75rem; }
             h3 { font-size: 1.25rem; }
@@ -208,7 +232,7 @@
 </head>
 <body>
     <header>
-        <nav>
+        <nav id="navbar">
             <div class="logo">AutoXAI</div>
             <ul>
                 <li><a href="#welcome">Welcome</a></li>
@@ -220,8 +244,9 @@
         </nav>
     </header>
 
+    <!-- Sections with updated background placeholders -->
     <section id="welcome">
-        <div class="parallax-bg" style="background-image: url('/api/placeholder/1920/1080');"></div>
+        <div class="parallax-bg"></div>
         <div class="content">
             <h1>Welcome to AutoXAI</h1>
             <p>Unlock and enable AI-driven innovation across all facets of your enterprise</p>
@@ -230,74 +255,17 @@
     </section>
 
     <section id="vision">
-        <div class="parallax-bg" style="background-image: url('/api/placeholder/1920/1080');"></div>
+        <div class="parallax-bg"></div>
         <div class="content">
             <h2>Our Vision</h2>
             <p>Empowering automotive enterprises to confidently navigate the AI landscape, transforming challenges into opportunities for innovation</p>
-            <p>From foundational understanding to strategic implementation, we drive AI excellence</p>
             <a href="#why-choose-us" class="btn next-section">Why Choose Us?</a>
         </div>
     </section>
 
-    <section id="why-choose-us">
-        <div class="parallax-bg" style="background-image: url('/api/placeholder/1920/1080');"></div>
-        <div class="content">
-            <h2>Why Choose Us?</h2>
-            <p>With over 13 years of unparalleled automotive expertise, we leverage proven AI leadership and hands-on experience to drive innovation.</p>
-            <p>Our first-principles approach builds foundational AI understanding, enabling organizations to confidently adopt tailored AI solutions that transform their R&D processes.</p>
-            <a href="#services" class="btn next-section">Explore Our Services</a>
-        </div>
-    </section>
-
-    <section id="services">
-        <div class="parallax-bg" style="background-image: url('/api/placeholder/1920/1080');"></div>
-        <div class="content">
-            <h2>Our Services</h2>
-            <div class="services">
-                <div class="service-item">
-                    <h3>Build foundational knowledge</h3>
-                    <p>Build a strong AI foundation across your organization. Our training simplifies complex concepts, equipping your team with essential AI knowledge.</p>
-                </div>
-                <div class="service-item">
-                    <h3>Strategic consulting</h3>
-                    <p>Collaborate with us to define a tailored AI strategy aligned with your goals. We help you create a clear roadmap for effective AI adoption.</p>
-                </div>
-                <div class="service-item">
-                    <h3>Turn Strategy into Action</h3>
-                    <p>Transform plans into reality. We assist in developing and deploying AI solutions that address your specific R&D challenges.</p>
-                </div>
-            </div>
-            <a href="#contact" class="btn next-section">Contact Us</a>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div class="parallax-bg" style="background-image: url('/api/placeholder/1920/1080');"></div>
-        <div class="content">
-            <h2>Contact Us</h2>
-            <p>Tel: +46 767 64 9795</p>
-            <p>Email: masoom.kumar87@gmail.com</p>
-            <p>Address: 4251 Göteborg, Sweden</p>
-            
-            <h3>Subscribe to Our Newsletter</h3>
-            <form action="#" method="post">
-                <input type="email" name="email" placeholder="Your email address" required>
-                <button type="submit" class="btn">Subscribe</button>
-            </form>
-            <a href="#welcome" class="btn next-section">Back to Top</a>
-        </div>
-    </section>
-
+    <!-- JavaScript for Scroll & Navbar Changes -->
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
+        // Parallax Scroll
         const parallax = () => {
             const parallaxBgs = document.querySelectorAll('.parallax-bg');
             parallaxBgs.forEach(bg => {
@@ -307,6 +275,16 @@
         };
 
         window.addEventListener('scroll', parallax);
+
+        // Navbar Background Change on Scroll
+        const navbar = document.getElementById("navbar");
+        window.addEventListener("scroll", function () {
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
     </script>
 </body>
 </html>
