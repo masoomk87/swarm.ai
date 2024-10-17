@@ -85,26 +85,17 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-        }
-        
-        .parallax-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            z-index: -1;
         }
 
-        #welcome .parallax-bg { background-image: url('images/welcome-section.jpg'); }
-        #vision .parallax-bg { background-image: url('images/vision-section.jpg'); }
-        #why-choose-us .parallax-bg { background-image: url('images/why-choose-us-section.jpg'); }
-        #services .parallax-bg { background-image: url('images/services-section.jpg'); }
+        #welcome { background-image: url('images/welcome-section.jpg'); }
+        #vision { background-image: url('images/vision-section.jpg'); }
+        #why-choose-us { background-image: url('images/why-choose-us-section.jpg'); }
+        #services { background-image: url('images/services-section.jpg'); }
         
-        .parallax-bg::before {
+        section::before {
             content: "";
             position: absolute;
             top: 0;
@@ -112,6 +103,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.6);
+            z-index: 0;
         }
         
         .content {
@@ -119,6 +111,7 @@
             padding: 3rem;
             border-radius: 10px;
             max-width: 800px;
+            position: relative;
             z-index: 1;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
@@ -217,6 +210,40 @@
             transform: translateX(-50%);
         }
 
+        /* New styles for Why Choose Us section */
+        .features-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            flex-basis: calc(33.333% - 2rem);
+            margin: 1rem;
+            padding: 1.5rem;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-item i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
         @media (max-width: 768px) {
             nav ul {
                 display: none;
@@ -229,8 +256,13 @@
             h1 { font-size: 2.5rem; }
             h2 { font-size: 2rem; }
             h3 { font-size: 1.75rem; }
+
+            .feature-item {
+                flex-basis: 100%;
+            }
         }
     </style>
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
@@ -247,7 +279,6 @@
     </header>
 
     <section id="welcome">
-        <div class="parallax-bg"></div>
         <div class="content">
             <h1>Welcome to AutoXAI</h1>
             <p>Unlock and enable AI-driven innovation across all facets of your enterprise</p>
@@ -256,7 +287,6 @@
     </section>
 
     <section id="vision">
-        <div class="parallax-bg"></div>
         <div class="content">
             <h2>Our Vision</h2>
             <p>Empowering automotive enterprises to confidently navigate the AI landscape, transforming challenges into opportunities for innovation</p>
@@ -265,21 +295,31 @@
     </section>
 
     <section id="why-choose-us">
-        <div class="parallax-bg"></div>
         <div class="content">
             <h2>Why Choose Us</h2>
             <p>With our deep expertise in both automotive systems and cutting-edge AI technologies, we offer unparalleled solutions tailored to your specific needs.</p>
-            <ul>
-                <li>Industry-specific AI solutions</li>
-                <li>Proven track record of success</li>
-                <li>Dedicated support and consultation</li>
-            </ul>
+            <div class="features-list">
+                <div class="feature-item">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Industry-specific AI solutions</h3>
+                    <p>Tailored AI solutions designed specifically for the automotive industry</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Proven track record of success</h3>
+                    <p>Demonstrable results and satisfied clients across the automotive sector</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-headset"></i>
+                    <h3>Dedicated support and consultation</h3>
+                    <p>Ongoing expert guidance and support throughout your AI journey</p>
+                </div>
+            </div>
             <a href="#services" class="btn next-section">Explore Our Services</a>
         </div>
     </section>
 
     <section id="services">
-        <div class="parallax-bg"></div>
         <div class="content">
             <h2>Our Services</h2>
             <div class="services">
@@ -313,16 +353,6 @@
     </section>
 
     <script>
-        const parallax = () => {
-            const parallaxBgs = document.querySelectorAll('.parallax-bg');
-            parallaxBgs.forEach(bg => {
-                const scrollPosition = window.pageYOffset;
-                bg.style.transform = `translateY(${scrollPosition * 0.5}px)`;
-            });
-        };
-
-        window.addEventListener('scroll', parallax);
-
         const navbar = document.getElementById("navbar");
         window.addEventListener("scroll", function () {
             if (window.scrollY > 50) {
