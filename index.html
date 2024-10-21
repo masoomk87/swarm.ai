@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AutoXAI - AI-driven Innovation for Automotive Enterprises</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Merriweather:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #1a2b3c;
@@ -166,6 +167,8 @@
             transition: var(--transition);
             position: relative;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            overflow: hidden;
         }
 
         .service-item h3 {
@@ -180,14 +183,12 @@
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
 
-        /* Service Item Icons */
         .service-item i {
             font-size: 3rem;
             color: var(--secondary-color);
             margin-bottom: 1rem;
         }
         
-        /* List Styling within Service Items */
         .service-item ul {
             list-style-type: disc;
             margin-left: 20px;
@@ -199,8 +200,25 @@
             line-height: 1.5;
         }
 
+        .service-details {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+            padding: 1rem;
+        }
 
-
+        .service-item:hover .service-details {
+            opacity: 1;
+        }
         
         form {
             display: flex;
@@ -224,15 +242,7 @@
             border-color: var(--secondary-color);
             box-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
         }
-/*
-        .next-section {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-        } */
 
-        /* New styles for Why Choose Us section */
         .features-list {
             display: flex;
             justify-content: space-around;
@@ -248,6 +258,13 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .feature-item.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .feature-item:hover {
@@ -264,6 +281,27 @@
         .feature-item h3 {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
+        }
+
+        #stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-color);
         }
 
         @media (max-width: 768px) {
@@ -283,8 +321,18 @@
                 flex-basis: 100%;
             }
         }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-vbHjPzGAD1F3Dwrqm8PAeqKc0LYokY1+8lXQ8dbA3H9bKwI6K7rjC3DZE+hc0r6C" crossorigin="anonymous">
 </head>
 <body>
     <header>
@@ -301,7 +349,7 @@
     </header>
 
     <section id="welcome">
-        <div class="content">
+        <div class="content fade-in">
             <h1>Empowering Innovation with AI Excellence</h1>
             <p>Building Strong AI Foundations Across Industries</p>
             <a href="#vision" class="btn">Discover Our Vision</a>
@@ -309,15 +357,29 @@
     </section>
 
     <section id="vision">
-        <div class="content">
+        <div class="content fade-in">
             <h2>Our Vision</h2>
             <p>Revolutionizing enterprises by empowering them with foundational AI understanding, strategic planning, and practical implementation.</p>
+            <div id="stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="13">0</div>
+                    <div class="stat-label">Years of Experience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="100">0</div>
+                    <div class="stat-label">Successful Projects</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">Industry Partners</div>
+                </div>
+            </div>
             <a href="#why-choose-us" class="btn next-section">Why Choose Us</a>
         </div>
     </section>
 
     <section id="why-choose-us">
-        <div class="content">
+        <div class="content fade-in">
             <h2>Why Choose Us</h2>
             <div class="features-list">
                 <div class="feature-item">
@@ -347,23 +409,53 @@
     </section>
 
     <section id="services">
-        <div class="content">
+        <div class="content fade-in">
             <h2>Our Services</h2>
             <div class="services">
-                <!-- Foundational AI Training -->
                 <div class="service-item">
+                    <i class="fas fa-chalkboard-teacher"></i>
                     <h3>Foundational AI Training</h3>
-                    <p>Demystify AI with tailored programs that build a strong foundation for your team. Offerings include executive workshops, team seminars, and customized training to suit your organization's needs.</p>
+                    <p>Demystify AI with tailored programs.</p>
+                    <div class="service-details">
+                        <h3>Foundational AI Training</h3>
+                        <p>Our training programs include:</p>
+                        <ul>
+                            <li>Executive workshops</li>
+                            <li>Team seminars</li>
+                            <li>Customized training modules</li>
+                            <li>Hands-on AI projects</li>
+                        </ul>
+                    </div>
                 </div>
-                <!-- AI Strategy Development -->
                 <div class="service-item">
+                    <i class="fas fa-chess"></i>
                     <h3>AI Strategy Development</h3>
-                    <p>Craft tailored AI roadmaps aligned with your objectives, ensuring a clear path to effective adoption.</p>
+                    <p>Craft tailored AI roadmaps for your business.</p>
+                    <div class="service-details">
+                        <h3>AI Strategy Development</h3>
+                        <p>Our strategy services include:</p>
+                        <ul>
+                            <li>AI readiness assessment</li>
+                            <li>Opportunity identification</li>
+                            <li>ROI analysis</li>
+                            <li>Implementation roadmap</li>
+                        </ul>
+                    </div>
                 </div>
-                <!-- Use Case Implementation -->
                 <div class="service-item">
+                    <i class="fas fa-rocket"></i>
                     <h3>Use Case Implementation</h3>
-                    <p>Develop and deploy AI solutions specific to your challenges, driving innovation and efficiency.</p>
+                    <p>Develop and deploy AI solutions.</p>
+                    <div class="service-details">
+                        <h3>Use Case Implementation</h3>
+                        <p>Our implementation services include:</p>
+                        <ul>
+                            <li>Proof of concept development</li>
+                            <li>AI model selection and training</li>
+                            <li>Integration with existing systems</li>
+                            <li>Performance monitoring and optimization</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <a href="#contact" class="btn next-section">Contact Us</a>
@@ -371,19 +463,30 @@
     </section>
     
     <section id="contact">
-        <div class="content">
+        <div class="content fade-in">
             <h2>Contact Us</h2>
             <p>Ready to transform your AI journey? Let's connect.</p>
-            <form>
-                <input type="text" placeholder="Name" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Message" rows="5" required></textarea>
+            <form id="contact-form">
+                <input type="text" id="name" placeholder="Name" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <textarea id="message" placeholder="Message" rows="5" required></textarea>
                 <button type="submit" class="btn">Send Message</button>
             </form>
         </div>
     </section>
 
     <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Navbar background change on scroll
         const navbar = document.getElementById("navbar");
         window.addEventListener("scroll", function () {
             if (window.scrollY > 50) {
@@ -392,6 +495,94 @@
                 navbar.style.backgroundColor = "rgba(26, 43, 60, 0.9)";
             }
         });
+
+        // Fade-in animation
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const fadeIn = (element) => {
+            const distanceFromTop = window.pageYOffset + element.getBoundingClientRect().top;
+            const elementHeight = element.offsetHeight;
+            const scrollTop = document.documentElement.scrollTop;
+            
+            const threshold = scrollTop + window.innerHeight - elementHeight / 2;
+            
+            if (distanceFromTop <= threshold) {
+                element.classList.add('visible');
+            }
+        };
+
+        const handleScroll = () => {
+            fadeElements.forEach((element) => {
+                fadeIn(element);
+            });
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('load', handleScroll);
+
+        // Animate statistics
+        const stats = document.querySelectorAll('.stat-number');
+        const animateStats = () => {
+            stats.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const count = parseInt(stat.innerText);
+                const increment = target / 200; // Adjust for animation speed
+
+                if (count < target) {
+                    stat.innerText = Math.ceil(count + increment);
+                    setTimeout(animateStats, 10);
+                } else {
+                    stat.innerText = target;
+                }
+            });
+        };
+
+        // Trigger stat animation when the vision section is in view
+        const visionSection = document.getElementById('vision');
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                animateStats();
+                observer.unobserve(visionSection);
+            }
+        });
+        observer.observe(visionSection);
+
+        // Form submission handling
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send this data to a server
+            console.log('Form submitted:', { name, email, message });
+            
+            // Clear the form
+            contactForm.reset();
+            
+            // Show a success message (you can replace this with a more user-friendly notification)
+            alert('Thank you for your message. We will get back to you soon!');
+        });
+
+        // Animate feature items
+        const featureItems = document.querySelectorAll('.feature-item');
+        const animateFeatures = () => {
+            featureItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('animate');
+                }, 200 * index);
+            });
+        };
+
+        // Trigger feature animation when the Why Choose Us section is in view
+        const whyChooseUsSection = document.getElementById('why-choose-us');
+        const featureObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                animateFeatures();
+                featureObserver.unobserve(whyChooseUsSection);
+            }
+        });
+        featureObserver.observe(whyChooseUsSection);
     </script>
 </body>
 </html>
