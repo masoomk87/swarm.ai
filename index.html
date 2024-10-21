@@ -80,9 +80,9 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Changed from center */
+            justify-content: flex-start;
             align-items: center;
-            padding: 6rem 2rem 4rem; /* Increased top padding */
+            padding: 80px 2rem 4rem; /* Adjusted top padding to account for fixed header */
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -110,6 +110,9 @@
         .content {
             background-color: rgba(255, 255, 255, 0.9);
             margin-top: 2rem;
+            opacity: 1; /* Ensure content is visible by default */
+            transform: translateY(0); /* Reset any transform */
+            transition: opacity 0.3s ease, transform 0.3s ease;
             padding: 3rem;
             border-radius: 10px;
             width: 100%;
@@ -329,9 +332,14 @@
         }
 
         .fade-in {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        
+        .fade-in.hidden {
             opacity: 0;
             transform: translateY(20px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         .fade-in.visible {
@@ -494,14 +502,19 @@
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
-                const headerOffset = 80; // Adjust this value based on your header height
+                const headerHeight = document.querySelector('header').offsetHeight;
                 const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
 
                 window.scrollTo({
                     top: offsetPosition,
                     behavior: 'smooth'
                 });
+
+                // Ensure content is visible immediately after scrolling
+                setTimeout(() => {
+                    targetElement.querySelector('.content').classList.remove('hidden');
+                }, 100);
             });
         });
 
@@ -517,15 +530,13 @@
 
         // Fade-in animation
         const fadeElements = document.querySelectorAll('.fade-in');
+        
         const fadeIn = (element) => {
-            const distanceFromTop = window.pageYOffset + element.getBoundingClientRect().top;
-            const elementHeight = element.offsetHeight;
-            const scrollTop = document.documentElement.scrollTop;
+            const rect = element.getBoundingClientRect();
+            const viewHeight = Math.max(document.documentElement.clientHeight, window.innerHeight);
             
-            const threshold = scrollTop + window.innerHeight - elementHeight / 2;
-            
-            if (distanceFromTop <= threshold) {
-                element.classList.add('visible');
+            if (!(rect.bottom < 0 || rect.top - viewHeight >= 0)) {
+                element.classList.remove('hidden');
             }
         };
 
@@ -534,6 +545,13 @@
                 fadeIn(element);
             });
         };
+
+        // Initialize elements as hidden
+        fadeElements.forEach(element => element.classList.add('hidden'));
+
+        // Trigger fade-in on load and scroll
+        window.addEventListener('load', handleScroll);
+        window.addEventListener('scroll', handleScroll);
 
         window.addEventListener('scroll', handleScroll);
         window.addEventListener('load', handleScroll);
