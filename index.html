@@ -161,13 +161,7 @@
         }
         
         .service-item {
-            background-color: rgba(255, 255, 255, 0.95);
-            padding: 2rem;
-            border-radius: 10px;
-            transition: var(--transition);
             position: relative;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
             overflow: hidden;
         }
 
@@ -212,10 +206,9 @@
             justify-content: center;
             align-items: center;
             opacity: 0;
-            transition: var(--transition);
-            padding: 1rem;
+            transition: opacity 0.3s ease;
         }
-
+        
         .service-item:hover .service-details {
             opacity: 1;
         }
